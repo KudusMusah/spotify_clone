@@ -1,31 +1,22 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:spotify_clone/features/onboarding/cubit/theme_cubit.dart';
 
 class CustomDivider extends StatelessWidget {
   const CustomDivider({super.key});
 
   @override
   Widget build(BuildContext context) {
-    final ThemeMode currTheme = context.watch<ThemeCubit>().state;
-
     return Row(
       children: [
         Expanded(
           child: Container(
             width: double.infinity,
             height: 1,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: currTheme == ThemeMode.dark
-                    ? [
-                        const Color(0xff5B5B5B),
-                        const Color(0xff252525),
-                      ]
-                    : [
-                        const Color(0xffB0B0B0),
-                        const Color(0xffD3D3D3),
-                      ],
+                colors: [
+                  Color(0xff5B5B5B),
+                  Color(0xff252525),
+                ],
               ),
             ),
           ),
@@ -38,17 +29,12 @@ class CustomDivider extends StatelessWidget {
           child: Container(
             width: double.infinity,
             height: 1,
-            decoration: BoxDecoration(
+            decoration: const BoxDecoration(
               gradient: LinearGradient(
-                colors: currTheme == ThemeMode.dark
-                    ? [
-                        const Color(0xff252525),
-                        const Color(0xff5B5B5B),
-                      ]
-                    : [
-                        const Color(0xffD3D3D3),
-                        const Color(0xffB0B0B0),
-                      ],
+                colors: [
+                  Color(0xff252525),
+                  Color(0xff5B5B5B),
+                ],
               ),
             ),
           ),

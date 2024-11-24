@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:spotify_clone/core/common/widgets/app_button.dart';
 import 'package:spotify_clone/core/common/widgets/custom_app_bar.dart';
 import 'package:spotify_clone/features/auth/screens/register.dart';
 import 'package:spotify_clone/features/auth/screens/sign_in.dart';
-import 'package:spotify_clone/features/onboarding/cubit/theme_cubit.dart';
 
 class AuthLandingPage extends StatelessWidget {
   const AuthLandingPage({super.key});
@@ -19,7 +17,6 @@ class AuthLandingPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeMode currTheme = context.watch<ThemeCubit>().state;
     return Scaffold(
       body: Stack(
         children: [
@@ -39,9 +36,12 @@ class AuthLandingPage extends StatelessWidget {
           ),
           Align(
             alignment: Alignment.bottomLeft,
-            child: Image.asset(
-              "assets/images/auth_bg.png",
+            child: SizedBox(
               height: 46.5.h,
+              child: Image.asset(
+                "assets/images/auth_bg.png",
+                fit: BoxFit.cover,
+              ),
             ),
           ),
           SizedBox(
@@ -50,7 +50,6 @@ class AuthLandingPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.center,
               children: [
                 CustomAppBar(
-                  isDarkTheme: currTheme == ThemeMode.dark,
                   onTap: () => Navigator.of(context).pop(),
                 ),
                 SizedBox(height: 14.h),
@@ -62,9 +61,7 @@ class AuthLandingPage extends StatelessWidget {
                 Text(
                   "Enjoy Listening To Music",
                   style: TextStyle(
-                    color: currTheme == ThemeMode.dark
-                        ? const Color.fromRGBO(160, 160, 160, 1)
-                        : const Color(0xff383838),
+                    color: const Color.fromRGBO(160, 160, 160, 1),
                     fontSize: 20.5.sp,
                     fontWeight: FontWeight.bold,
                   ),
@@ -77,9 +74,7 @@ class AuthLandingPage extends StatelessWidget {
                     textAlign: TextAlign.center,
                     style: TextStyle(
                       fontSize: 16.7.sp,
-                      color: currTheme == ThemeMode.dark
-                          ? const Color(0xffA0A0A0)
-                          : const Color(0xff797979),
+                      color: const Color(0xffA0A0A0),
                     ),
                   ),
                 ),
@@ -102,9 +97,7 @@ class AuthLandingPage extends StatelessWidget {
                         child: Text(
                           "Sign in",
                           style: TextStyle(
-                            color: currTheme == ThemeMode.dark
-                                ? const Color(0xffA0A0A0)
-                                : const Color(0xff313131),
+                            color: const Color(0xffA0A0A0),
                             fontSize: 17.5.sp,
                             fontWeight: FontWeight.w700,
                           ),

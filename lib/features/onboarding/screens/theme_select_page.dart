@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:spotify_clone/core/common/widgets/app_button.dart';
+import 'package:spotify_clone/core/themes/app_colors.dart';
 import 'package:spotify_clone/features/auth/screens/auth_landing_page.dart';
-import 'package:spotify_clone/features/onboarding/cubit/theme_cubit.dart';
 import 'package:spotify_clone/features/onboarding/widgets/mode_icon_widget.dart';
 
 class ThemeSelectPage extends StatelessWidget {
@@ -16,14 +15,10 @@ class ThemeSelectPage extends StatelessWidget {
 
   const ThemeSelectPage({super.key});
 
-  void updateTheme(BuildContext context, ThemeMode mode) {
-    debugPrint("Hello");
-    context.read<ThemeCubit>().updateTheme(mode);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: AppColors.lightBackgroundColor,
       body: Stack(
         children: [
           Image.asset(
@@ -52,32 +47,36 @@ class ThemeSelectPage extends StatelessWidget {
                     fontWeight: FontWeight.bold,
                   ),
                 ),
+                Text(
+                  "Light Mode yet to be implemented",
+                  style: TextStyle(
+                    color: const Color(0xffDADADA),
+                    fontSize: 16.sp,
+                    fontWeight: FontWeight.w500,
+                  ),
+                ),
                 SizedBox(height: 4.h),
-                BlocBuilder<ThemeCubit, ThemeMode>(
-                  builder: (context, state) {
-                    return Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        GestureDetector(
-                          onTap: () => updateTheme(context, ThemeMode.dark),
-                          child: ModeIconWidget(
-                            assetName: "moon",
-                            title: "Dark Mode",
-                            selected: state == ThemeMode.dark,
-                          ),
-                        ),
-                        SizedBox(width: 15.w),
-                        GestureDetector(
-                          onTap: () => updateTheme(context, ThemeMode.light),
-                          child: ModeIconWidget(
-                            assetName: "sun",
-                            title: "Light Mode",
-                            selected: state == ThemeMode.light,
-                          ),
-                        ),
-                      ],
-                    );
-                  },
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    GestureDetector(
+                      onTap: () {},
+                      child: const ModeIconWidget(
+                        assetName: "moon",
+                        title: "Dark Mode",
+                        selected: true,
+                      ),
+                    ),
+                    SizedBox(width: 15.w),
+                    GestureDetector(
+                      onTap: () {},
+                      child: const ModeIconWidget(
+                        assetName: "sun",
+                        title: "Light Mode",
+                        selected: false,
+                      ),
+                    ),
+                  ],
                 ),
                 SizedBox(height: 8.h),
                 Padding(

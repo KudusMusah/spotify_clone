@@ -15,6 +15,10 @@ class AppTheme {
         ),
       ),
     ),
+    sliderTheme: SliderThemeData(
+      overlayShape: SliderComponentShape.noOverlay,
+      trackHeight: 2,
+    ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,
       fillColor: Colors.transparent,
@@ -52,6 +56,10 @@ class AppTheme {
           borderRadius: BorderRadius.circular(25),
         ),
       ),
+    ),
+    sliderTheme: SliderThemeData(
+      overlayShape: SliderComponentShape.noOverlay,
+      trackHeight: 2,
     ),
     inputDecorationTheme: InputDecorationTheme(
       filled: true,

@@ -1,6 +1,5 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:responsive_sizer/responsive_sizer.dart';
 import 'package:spotify_clone/core/common/widgets/app_button.dart';
@@ -9,7 +8,6 @@ import 'package:spotify_clone/core/themes/app_colors.dart';
 import 'package:spotify_clone/features/auth/screens/register.dart';
 import 'package:spotify_clone/features/auth/widgets/auth_input.dart';
 import 'package:spotify_clone/features/auth/widgets/custom_divider.dart';
-import 'package:spotify_clone/features/onboarding/cubit/theme_cubit.dart';
 import 'package:spotify_clone/features/songs/screens/home.dart';
 
 class SignInScreen extends StatefulWidget {
@@ -35,10 +33,8 @@ class _SignInScreenState extends State<SignInScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final ThemeMode currTheme = context.watch<ThemeCubit>().state;
     return Scaffold(
       appBar: CustomAppBar(
-        isDarkTheme: currTheme == ThemeMode.dark,
         onTap: () => Navigator.of(context).pop(),
         title: SvgPicture.asset(
           "assets/svgs/spotify_logo.svg",
@@ -55,23 +51,19 @@ class _SignInScreenState extends State<SignInScreen> {
                 Text(
                   "Sign In",
                   style: TextStyle(
-                    color: currTheme == ThemeMode.dark
-                        ? AppColors.lightBackgroundColor
-                        : const Color(0xff383838),
+                    color: AppColors.lightBackgroundColor,
                     fontSize: 21.3.sp,
                     fontWeight: FontWeight.w700,
                   ),
                 ),
                 SizedBox(height: 2.h),
                 RichText(
-                  text: TextSpan(
+                  text: const TextSpan(
                     text: "If You Need Any Support ",
                     style: TextStyle(
-                      color: currTheme == ThemeMode.dark
-                          ? AppColors.lightBackgroundColor
-                          : const Color(0xff383838),
+                      color: AppColors.lightBackgroundColor,
                     ),
-                    children: const [
+                    children: [
                       TextSpan(
                         text: "Click here",
                         style: TextStyle(
@@ -146,9 +138,7 @@ class _SignInScreenState extends State<SignInScreen> {
                   text: TextSpan(
                     text: "Not A Member? ",
                     style: TextStyle(
-                      color: currTheme == ThemeMode.dark
-                          ? AppColors.lightBackgroundColor
-                          : const Color(0xff383838),
+                      color: AppColors.lightBackgroundColor,
                       fontSize: 15.2.sp,
                     ),
                     children: [

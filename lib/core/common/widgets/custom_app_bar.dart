@@ -5,17 +5,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   const CustomAppBar({
     super.key,
     this.title,
-    required this.isDarkTheme,
-    required this.onTap,
+    this.onTap,
     this.trailing,
     this.leading,
   });
 
   final Widget? title;
-  final bool isDarkTheme;
-  final VoidCallback onTap;
+  final VoidCallback? onTap;
   final IconData? trailing;
-  final Widget? leading;
+  final IconData? leading;
 
   @override
   Widget build(BuildContext context) {
@@ -25,24 +23,22 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         surfaceTintColor: Colors.transparent,
         backgroundColor: Colors.transparent,
         centerTitle: true,
-        leading: leading ??
-            IconButton(
-              onPressed: onTap,
-              icon: Container(
-                height: 50,
-                width: 50,
-                decoration: BoxDecoration(
-                    color: isDarkTheme
-                        ? Colors.white.withOpacity(0.03)
-                        : Colors.black.withOpacity(0.04),
-                    shape: BoxShape.circle),
-                child: Icon(
-                  Icons.arrow_back_ios_new,
-                  size: 15,
-                  color: isDarkTheme ? Colors.white : Colors.black,
-                ),
-              ),
+        leading: IconButton(
+          onPressed: onTap ?? () => Navigator.of(context).pop(),
+          icon: Container(
+            height: 50,
+            width: 50,
+            decoration: BoxDecoration(
+              color: Colors.white.withOpacity(0.03),
+              shape: BoxShape.circle,
             ),
+            child: Icon(
+              leading ?? Icons.arrow_back_ios_new,
+              size: 15,
+              color: Colors.white,
+            ),
+          ),
+        ),
         title: title ?? const Text(""),
         actions: [
           trailing != null
